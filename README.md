@@ -6,7 +6,7 @@ _You cannot utilize django without activating the virtual environment, it's a mu
 
 - in your command terminal, run **virtualenv env**
 - cd to env
-- run **source bin/activate**
+- run **source bin/activate** (mac way)
   
 ## Front-end
 
