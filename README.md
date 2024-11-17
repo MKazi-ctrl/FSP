@@ -4,7 +4,7 @@
 
 _You cannot utilize django without activating the virtual environment, it's a must_
 
-- run **virtualenv env**
+- in your command terminal, run **virtualenv env**
 - cd to env
 - run **source bin/activate**
   
