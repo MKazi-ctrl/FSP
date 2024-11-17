@@ -1,0 +1,44 @@
+/* DashboardPage.css */
+.dashboard-page {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.return-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}

@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react'
+import './App.css'
+import React from 'react';
+import ProfilePage from './components/ProfilePage.jsx';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import DashboardPage from './components/DashBoardPage.jsx';
+import LoyaltyPointsPage from './components/LoyaltyPointsPage.jsx';
+import SupportTicketsPage from './components/SupportTicketsPage.jsx';
 
 
 function App() {
@@ -28,9 +35,24 @@ function App() {
     fetchData();
   }, []);
   return (
-    <>
-      hello world
-    </>
+    <Router>
+      <div className="App">
+        <nav>
+          <Link to="/">Profile</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/loyalty">Loyalty Points</Link>
+          <Link to="/support">Support Tickets</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<ProfilePage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/loyalty" element={<LoyaltyPointsPage />} />
+          <Route path="/support" element={<SupportTicketsPage />} />
+        </Routes>
+      </div>
+    </Router>
+
+
   )
 
 
