@@ -2,7 +2,7 @@
 
 ## Front-end
 
-- Go to the front-end directory and run: **npm run dev**
+- Go to the front-end directory in your command terminal and run: **npm run dev**
 - This is the local host to access front-end: **http://localhost:5173/**
 - You should see this:
   <img width="1440" alt="image" src="https://github.com/user-attachments/assets/06ea5df1-e963-4e72-9e77-906ee196ee0a">
@@ -16,7 +16,7 @@
 
 _You cannot utilize django without activating the virtual environment, it's a must_
 
-- cd to **env** directory
+- cd to **env** directory 
 - Activate the virtual environment, in mac it's **source bin/activate**
 - cd to "backend" and run the line **python manage.py runserver**
 - This is the local host link to access back-end **http://127.0.0.1:8000/**
