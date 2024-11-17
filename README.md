@@ -1,5 +1,13 @@
 # Instructions
 
+## Make a virtual environment in the fsp folder
+
+_You cannot utilize django without activating the virtual environment, it's a must_
+
+- run **virtualenv env**
+- cd to env
+- run **source bin/activate**
+  
 ## Front-end
 
 - Go to the front-end directory in your command terminal and run: **npm run dev**
@@ -13,8 +21,6 @@
 
 
 ## Back-end
-
-_You cannot utilize django without activating the virtual environment, it's a must_
 
 - cd to **env** directory 
 - Activate the virtual environment, in mac it's **source bin/activate**
