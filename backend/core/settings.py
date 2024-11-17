@@ -85,11 +85,14 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
+
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "CPS714-Project",
-        "User": "714user",
-        "Password": "714pass",
-        "Host": "127.0.0.1",
+        "NAME": "user profile and account management",
+        "USER": "root",
+        "PASSWORD": "max123",
+        "HOST": "127.0.0.1",
         "PORT": "3306", 
     }
 }
