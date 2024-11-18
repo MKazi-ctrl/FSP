@@ -91,7 +91,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "User Profile and Account Management",
         "USER": "root",
-        "PASSWORD": "password", #Change it to the same password you have setup in your sql work bench
+        "PASSWORD": "My_app123", #Change it to the same password you have setup in your sql work bench
         "HOST": "127.0.0.1",
         "PORT": "3306", 
     }
