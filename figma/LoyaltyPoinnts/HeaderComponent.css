@@ -1,0 +1,80 @@
+/* HeaderComponent.css */
+.header {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.back-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+}
+
+/* LoyaltyPointsSummary.css */
+.loyalty-points-summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.points-card {
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.points-number {
+    background-color: #ff8a80;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
+    margin-top: 10px;
+}
+
+.note {
+    font-size: 14px;
+    color: #000;
+    opacity: 0.34;
+}
+
+/* RecentTransactionsTable.css */
+.recent-transactions-table {
+    margin: 20px;
+    padding: 20px;
+    background-color: #e0f7fa;
+    border-radius: 10px;
+}
+
+.recent-transactions-table h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    color: #000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00bcd4;
+    color: white;
+}
+
+/* App.css */
+.app {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
