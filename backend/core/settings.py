@@ -89,9 +89,9 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "user profile and account management",
+        "NAME": "User Profile and Account Management",
         "USER": "root",
-        "PASSWORD": "max123",
+        "PASSWORD": "password", #Change it to the same password you have setup in your sql work bench
         "HOST": "127.0.0.1",
         "PORT": "3306", 
     }
