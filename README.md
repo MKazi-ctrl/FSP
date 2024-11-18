@@ -25,8 +25,10 @@ _You cannot utilize django in backend without activating the virtual environment
 - cd to **env** directory 
 - Activate the virtual environment if you haven't already, in mac it's **source bin/activate**
 - if you're using mac, make sure you run **pip install pymysql** before doing the next steps
-- Make sure you set up the password to be the same as your sql work bench before you do the next step
-<img width="795" alt="image" src="https://github.com/user-attachments/assets/b45b76e1-7a78-4490-9f0c-cf63dc43fbb7">
+- Make sure you set up the password to be the same as your sql work bench before you do the next step.
+- The username is typically always **"root"** as you're connecting to a default localhost
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/26148803-b0ea-4a74-a284-bf6813e2fe06">
+
 
 - cd to "backend" and run the line **python manage.py runserver**
 - This is the local host link to access back-end **http://127.0.0.1:8000/**
