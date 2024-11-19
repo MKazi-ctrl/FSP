@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProfilePage.css';
 import ProfileGradient from '../assets/profile-gradient.svg';
+import PlaceholderProfile from '../assets/placeholder-profile.jpeg';
 
 const ProfilePage = () => {
     const [userData, setUserData] = useState(null); // Store user data
@@ -52,7 +53,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="profile-header">
                     <div className="profile-image-container">
-                        <img src="https://placeholder.pics/svg/100" alt="Profile" className="profile-image" />
+                        <img src={PlaceholderProfile} alt="Profile" className="profile-picture" />
                     </div>
                     <div className="profile-info">
                         <h1>{userData ? userData.firstName : 'Loading...'} {userData ? userData.lastName : 'Loading...'}</h1>

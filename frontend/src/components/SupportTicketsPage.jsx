@@ -5,7 +5,7 @@ import './SupportTicketsPage.css';
 const SupportTicketsPage = () => {
   return (
     <div className="support-page">
-      <a href="/" className="return-link">Return to Profile Management</a>
+      <a href="/" className="return-link">{`<`}  Return to Profile Management</a>
       <div className="tickets-section">
         <h2>Support Tickets</h2>
         <table className="tickets-table">

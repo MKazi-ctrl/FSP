@@ -5,7 +5,7 @@ import './LoyaltyPointsPage.css';
 const LoyaltyPointsPage = () => {
   return (
     <div className="loyalty-page">
-      <a href="/" className="return-link">Return to Profile Management</a>
+      <a href="/" className="return-link">{`<`} Return to Profile Management</a>
       <div className="points-summary">
         <div className="points-card">
           <h2>Your Loyalty Points</h2>
