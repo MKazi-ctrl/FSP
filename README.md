@@ -11,6 +11,7 @@ _You cannot utilize django without activating the virtual environment, it's a mu
 ## Front-end
 
 - Go to the front-end directory in your command terminal and run: **npm run dev**
+- make sure to npm install in front-end if not already
 - This is the local host to access front-end: **http://localhost:5173/**
 - You should see this:
   <img width="1440" alt="image" src="https://github.com/user-attachments/assets/06ea5df1-e963-4e72-9e77-906ee196ee0a">
