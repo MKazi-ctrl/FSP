@@ -1,0 +1,133 @@
+/* DashboardPage.css */
+.dashboard-page {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin-left: 100px;
+  }
+  
+  .return-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-template-rows: auto auto; 
+  }
+  
+  .card {
+    background-color: #ECF3FF;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:nth-child(1) {
+    grid-column: span 1; /* Makes the first card span 2 columns */
+    grid-row: span 1;
+  }
+  
+  .card:nth-child(2) {
+    grid-column: span 1; /* Keeps this one in 1 column */
+    grid-row: span 2;
+  }
+  .card:nth-child(3) {
+    grid-column: span 1; /* Keeps this one in 1 column */
+    grid-row: span 1;
+  }
+  
+  .card:nth-child(4) {
+    grid-column: span 2; /* Makes this card span 2 columns */
+  }
+  
+  .card:nth-child(5) {
+    grid-column: span 2; /* Keeps this one in 1 column */
+  }
+  
+  .card:nth-child(6) {
+    grid-column: span 1; /* Keeps this one in 1 column */
+  }
+  
+  .card:nth-child(7) {
+    grid-column: span 2; /* Makes the last card span 3 columns */
+  }
+
+.card-icon {
+    height: 100px;
+    width: 100px;
+}
+.points-history {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.purchase-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #FF9798;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.purchase-item-container,
+.points-container {
+    display: flex;
+    align-items: center;
+}
+
+.purchase-item-container p,
+.points-container p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.points-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .points-card {
+    background-color: #f0f4ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .points-value {
+    font-size: 36px;
+    color: #ff6b6b;
+    margin: 10px 0;
+  }
