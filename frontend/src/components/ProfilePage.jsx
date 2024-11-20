@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './ProfilePage.css';
 import ProfileGradient from '../assets/profile-gradient.svg';
 import PlaceholderProfile from '../assets/placeholder-profile.jpeg';
@@ -16,21 +18,26 @@ const ProfilePage = () => {
     });
 
     // Fetch user data from the backend
-    useEffect(() => {
-        async function fetchUserData() {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}user-profile`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
-                }
-                const result = await response.json();
-                setUserData(result);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
+    async function fetchUserData() {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users/');
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`Error: ${response.status} - ${errorText}`);
+                throw new Error(`Network response was not ok: ${response.status} - ${errorText}`);
             }
+
+            const data = await response.json();
+            console.log(data);  // Logs the data from your users table
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-        fetchUserData();
-    }, []);
+    }
+
+    // Call the function to fetch data
+    fetchUserData();
+
 
     const handleEditToggle = () => {
         setIsEditing(!isEditing);
@@ -41,11 +48,26 @@ const ProfilePage = () => {
         setIsEditing(false);
     };
 
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/users/')
+            .then(response => {
+                setUsers(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the articles!', error);
+            });
+    }, []);
+
+
     return (
+
         <div className="profile-page">
-            <div className="profile-page-header">
-                <h1>Welcome, {userData ? userData.firstName : 'Loading...'}</h1>
-                <p>{formattedDate}</p>
+            <div className="profile-page">
+                <div className="profile-page-header">
+                    <h1>Welcome, {users.length > 0 ? users[0].FirstName : 'Loading...'}</h1>
+                    <p>{formattedDate}</p>
+                </div>
             </div>
             <div className="profile-container">
                 <div className="gradient-container">
@@ -56,8 +78,8 @@ const ProfilePage = () => {
                         <img src={PlaceholderProfile} alt="Profile" className="profile-picture" />
                     </div>
                     <div className="profile-info">
-                        <h1>{userData ? userData.firstName : 'Loading...'} {userData ? userData.lastName : 'Loading...'}</h1>
-                        <p>{userData ? userData.email : 'Loading...'}</p>
+                        <h1>{users.length > 0 ? users[0].FirstName : 'Loading...'} {userData ? userData.lastName : 'Loading...'}</h1>
+                        <p>{users.length > 0 ? users[0].FirstName : 'Loading...'}</p>
                     </div>
                     <div className="profile-edit-button-container">
                         {isEditing ? (
