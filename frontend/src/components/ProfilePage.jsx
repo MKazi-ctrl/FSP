@@ -198,36 +198,36 @@ const ProfilePage = () => {
                     ) : (
                         <>
                             <div className="form-group">
-                                <label>First Name:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>First Name:</label>
                                 <p >{users.length > 0 ? users[num].FirstName : 'Loading...'}</p>
 
                             </div>
                             <div className="form-group">
-                                <label>Last Name:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Last Name:</label>
                                 <p>{users.length > 0 ? users[num].Lastname : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>Email:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Email:</label>
                                 <p>{users.length > 0 ? users[num].Email : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>Phone Number:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Phone Number:</label>
                                 <p>{users.length > 0 ? users[num].PhoneNumber : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>Address:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Address:</label>
                                 <p>{users.length > 0 ? users[num].Address : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>City:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>City:</label>
                                 <p>{users.length > 0 ? users[num].City : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>Postal Code:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Postal Code:</label>
                                 <p>{users.length > 0 ? users[num].PostalCode : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label>Country:</label>
+                                <label style={{ backgroundColor: 'lightgray' }}>Country:</label>
                                 <p>{users.length > 0 ? users[num].Country : 'Loading...'}</p>
                             </div>
 
