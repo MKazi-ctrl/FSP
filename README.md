@@ -19,7 +19,6 @@ _You cannot utilize django without activating the virtual environment, it's a mu
 
 - cd to "backend" and run the line **python manage.py runserver**
 - This is the local host link to access back-end **http://127.0.0.1:8000/**
-- Access the admin page using this link: **http://127.0.0.1:8000/api/**
 <img width="1335" alt="image" src="https://github.com/user-attachments/assets/c4400279-f907-4005-a8d1-def522340ffa">
 
 
