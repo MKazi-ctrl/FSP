@@ -3,7 +3,7 @@
 
 ## Make a virtual environment in the fsp folder
 
-_You cannot utilize django without activating the virtual environment, it's a must_
+_You cannot utilize django in backend without activating the virtual environment, it's a must_
 
 - in your command terminal, run **virtualenv env**
 - cd to env
@@ -11,15 +11,6 @@ _You cannot utilize django without activating the virtual environment, it's a mu
 
 ## Back-end
 
-- cd to **env** directory 
-- Activate the virtual environment, in mac it's **source bin/activate**
-- Before you run back-end, make sure you set-up your local sqlworkbench with django correctly by inputting your credentials in backend/core/settings.py file.
-- Name is the name of the schema, user is usually root. You most likely just need to change your password variable.
-  <img width="781" alt="image" src="https://github.com/user-attachments/assets/b99fead9-6810-4f99-8a87-cb85e525a43b">
-
-- cd to "backend" and run the line **python manage.py runserver**
-- This is the local host link to access back-end **http://127.0.0.1:8000/**
-<img width="1335" alt="image" src="https://github.com/user-attachments/assets/c4400279-f907-4005-a8d1-def522340ffa">
 
 
 - Access the api page using this link: **http://127.0.0.1:8000/api/**
