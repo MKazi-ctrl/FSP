@@ -1,11 +1,25 @@
 // SupportTicketsPage.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './SupportTicketsPage.css';
 
 const SupportTicketsPage = () => {
+
+  const [support, setSupport] = useState([]);
+  const num4 = 0;
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/support/')
+      .then(response => {
+        setSupport(response.data);
+
+      })
+      .catch(error => {
+        console.error('Error fetching users:', error);
+      });
+  }, [num4]);
   return (
     <div className="support-page">
-      <a href="/" className="return-link">Return to Profile Management</a>
+      <a href="/" className="return-link">{`<`}  Return to Profile Management</a>
       <div className="tickets-section">
         <h2>Support Tickets</h2>
         <table className="tickets-table">
@@ -20,34 +34,48 @@ const SupportTicketsPage = () => {
           </thead>
           <tbody>
             <tr>
-              <td>YY-853581</td>
-              <td>Access lost</td>
-              <td>2024-01-29</td>
-              <td>2024-02-01</td>
-              <td>Closed</td>
+              <td>{support.length > 0 ? support[num4].ticketID : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4].description : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4].createdAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4].updatedAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4].status : 'Loading...'}</td>
             </tr>
             <tr>
-              <td>YY-54357858</td>
-              <td>Unable to redeem points</td>
-              <td>2024-11-01</td>
-              <td>2024-11-02</td>
-              <td>Open</td>
+              <td>{support.length > 0 ? support[num4 + 1].ticketID : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 1].description : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 1].createdAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 1].updatedAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 1].status : 'Loading...'}</td>
             </tr>
+            <tr>
+              <td>{support.length > 0 ? support[num4 + 2].ticketID : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 2].description : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 2].createdAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 2].updatedAt : 'Loading...'}</td>
+              <td>{support.length > 0 ? support[num4 + 2].status : 'Loading...'}</td>
+            </tr>
+
           </tbody>
         </table>
       </div>
       <div className="status-summary">
         <div className="status-card">
           <h3>Total Open</h3>
-          <p className="status-value">1</p>
+          <p className="status-value">{support.length > 0
+            ? support.filter(ticket => ticket.status === 'Open').length
+            : 'Loading...'}</p>
         </div>
         <div className="status-card">
           <h3>Total in-progress</h3>
-          <p className="status-value">3</p>
+          <p className="status-value">{support.length > 0
+            ? support.filter(ticket => ticket.status === 'In_progress').length
+            : 'Loading...'}</p>
         </div>
         <div className="status-card">
           <h3>Total Closed</h3>
-          <p className="status-value">6</p>
+          <p className="status-value">{support.length > 0
+            ? support.filter(ticket => ticket.status === 'Resolved').length
+            : 'Loading...'}</p>
         </div>
       </div>
     </div>

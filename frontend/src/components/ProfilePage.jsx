@@ -1,50 +1,82 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ProfilePage.css';
 import ProfileGradient from '../assets/profile-gradient.svg';
+import PlaceholderProfile from '../assets/placeholder-profile.jpeg';
 
 const ProfilePage = () => {
-    const [userData, setUserData] = useState(null); // Store user data
-    const [isEditing, setIsEditing] = useState(false); // Toggle edit form
+    const [users, setUsers] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newFirstName, setNewFirstName] = useState('');
+    const [newLastName, setNewLastName] = useState('');
+    const [newPhoneNumber, setNewPhoneNumber] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newAddress, setNewAddress] = useState('');
+    const [newCity, setNewCity] = useState('');
+    const [newPostalCode, setNewPostalCode] = useState('');
+    const [newCountry, setNewCountry] = useState('');
 
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'long', // full weekday name (e.g., "Monday")
-        year: 'numeric', // full year (e.g., "2024")
-        month: 'long', // full month name (e.g., "November")
-        day: 'numeric' // day of the month (e.g., "19")
-    });
+    const num = 0; // Current user index (update as needed)
 
-    // Fetch user data from the backend
     useEffect(() => {
-        async function fetchUserData() {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}user-profile`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
+        axios.get('http://127.0.0.1:8000/api/users/')
+            .then(response => {
+                setUsers(response.data);
+                if (response.data.length > 0) {
+                    setNewFirstName(response.data[num].FirstName);
+                    setNewLastName(response.data[num].Lastname);
+                    setNewEmail(response.data[num].Email);
+                    setNewPhoneNumber(response.data[num].PhoneNumber);
+                    setNewAddress(response.data[num].Address);
+                    setNewCity(response.data[num].City);
+                    setNewPostalCode(response.data[num].PostalCode);
+                    setNewCountry(response.data[num].Country);
                 }
-                const result = await response.json();
-                setUserData(result);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        }
-        fetchUserData();
-    }, []);
-
-    const handleEditToggle = () => {
-        setIsEditing(!isEditing);
-    };
+            })
+            .catch(error => {
+                console.error('Error fetching users:', error);
+            });
+    }, [num]);
 
     const handleSave = () => {
-        // Handle save logic here (e.g., send updated data to the backend)
-        setIsEditing(false);
+        console.log({
+            FirstName: newFirstName,
+            Lastname: newLastName,
+            Email: newEmail,
+            PhoneNumber: newPhoneNumber,
+            Address: newAddress,
+            City: newCity,
+            PostalCode: newPostalCode,
+            Country: newCountry,
+        });
+        axios
+            .put(`http://127.0.0.1:8000/api/users/${users[num].UserID}/`, {
+                FirstName: newFirstName,
+                Lastname: newLastName,
+                Email: newEmail,
+                PhoneNumber: newPhoneNumber,
+                Address: newAddress,
+                City: newCity,
+                PostalCode: newPostalCode,
+                Country: newCountry,
+            })
+            .then(() => {
+                alert('Changes saved successfully!');
+                setIsEditing(false);
+                // Refresh user data after saving
+                axios.get('http://127.0.0.1:8000/api/users/')
+                    .then(response => setUsers(response.data));
+            })
+            .catch(error => {
+                console.error('Error updating user:', error);
+                alert('Failed to save changes. Please try again.');
+            });
     };
 
     return (
         <div className="profile-page">
             <div className="profile-page-header">
-                <h1>Welcome, {userData ? userData.firstName : 'Loading...'}</h1>
-                <p>{formattedDate}</p>
+                <h1>Welcome, {users.length > 0 ? users[num].FirstName : 'Loading...'}</h1>
             </div>
             <div className="profile-container">
                 <div className="gradient-container">
@@ -52,11 +84,11 @@ const ProfilePage = () => {
                 </div>
                 <div className="profile-header">
                     <div className="profile-image-container">
-                        <img src="https://placeholder.pics/svg/100" alt="Profile" className="profile-image" />
+                        <img src={PlaceholderProfile} alt="Profile" className="profile-picture" />
                     </div>
                     <div className="profile-info">
-                        <h1>{userData ? userData.firstName : 'Loading...'} {userData ? userData.lastName : 'Loading...'}</h1>
-                        <p>{userData ? userData.email : 'Loading...'}</p>
+                        <h1>{users.length > 0 ? `${users[num].FirstName} ${users[num].Lastname}` : 'Loading...'}</h1>
+                        <p>{users.length > 0 ? users[num].Email : 'Loading...'}</p>
                     </div>
                     <div className="profile-edit-button-container">
                         {isEditing ? (
@@ -64,7 +96,7 @@ const ProfilePage = () => {
                                 Save
                             </button>
                         ) : (
-                            <button onClick={handleEditToggle} className="edit-button">
+                            <button onClick={() => setIsEditing(true)} className="edit-button">
                                 Edit
                             </button>
                         )}
@@ -79,151 +111,126 @@ const ProfilePage = () => {
                                 <input
                                     id="firstName"
                                     type="text"
-                                    placeholder="Your First Name"
-                                    defaultValue={userData ? userData.firstName : ''}
+                                    value={newFirstName}
+                                    onChange={(e) => setNewFirstName(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="lastName">Last Name:</label>
+                                <label htmlFor="lastname">Last Name:</label>
                                 <input
-                                    id="lastName"
+                                    id="lastname"
                                     type="text"
-                                    placeholder="Your Last Name"
-                                    defaultValue={userData ? userData.lastName : ''}
+                                    value={newLastName}
+                                    onChange={(e) => setNewLastName(e.target.value)}
+                                    className="input-field"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email:</label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    value={newEmail}
+                                    onChange={(e) => setNewEmail(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone Number:</label>
                                 <input
-                                    id="phoneNumber"
+                                    id="PhoneNumber"
                                     type="text"
                                     placeholder="Your Phone Number"
-                                    defaultValue={userData ? userData.phoneNumber : ''}
+                                    value={newPhoneNumber}
+                                    onChange={(e) => setNewPhoneNumber(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="province">Province:</label>
+                                <label htmlFor="Address">Address:</label>
                                 <input
-                                    id="province"
+                                    id="Address"
                                     type="text"
-                                    placeholder="Your Province"
-                                    defaultValue={userData ? userData.province : ''}
+                                    placeholder="Your Address"
+                                    value={newAddress}
+                                    onChange={(e) => setNewAddress(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="city">City:</label>
+                                <label htmlFor="City">City:</label>
                                 <input
-                                    id="city"
+                                    id="City"
                                     type="text"
                                     placeholder="Your City"
-                                    defaultValue={userData ? userData.city : ''}
+                                    value={newCity}
+                                    onChange={(e) => setNewCity(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="postalCode">Postal Code:</label>
+                                <label htmlFor="PostalCode">Postal Code:</label>
                                 <input
-                                    id="postalCode"
+                                    id="PostalCode"
                                     type="text"
                                     placeholder="Your Postal Code"
-                                    defaultValue={userData ? userData.postalCode : ''}
+                                    value={newPostalCode}
+                                    onChange={(e) => setNewPostalCode(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="emailAddress">My Email Address</label>
+                                <label htmlFor="PostalCode">Country:</label>
                                 <input
-                                    id="emailAddress"
+                                    id="PostalCode"
                                     type="text"
-                                    placeholder="Your Email Address"
-                                    defaultValue={userData ? userData.email : ''}
+                                    placeholder="Your Country"
+                                    value={newCountry}
+                                    onChange={(e) => setNewCountry(e.target.value)}
                                     className="input-field"
                                 />
                             </div>
+
+
+
                         </>
                     ) : (
                         <>
+                            <div className="form-group">
+                                <label style={{ backgroundColor: 'lightgray' }}>First Name:</label>
+                                <p >{users.length > 0 ? users[num].FirstName : 'Loading...'}</p>
 
-                            <div className="form-group">
-                                <label htmlFor="firstName">First Name:</label>
-                                <input
-                                    id="firstName"
-                                    type="text"
-                                    placeholder="Your First Name"
-                                    defaultValue={userData ? userData.firstName : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="lastName">Last Name:</label>
-                                <input
-                                    id="lastName"
-                                    type="text"
-                                    placeholder="Your Last Name"
-                                    defaultValue={userData ? userData.lastName : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>Last Name:</label>
+                                <p>{users.length > 0 ? users[num].Lastname : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phoneNumber">Phone Number:</label>
-                                <input
-                                    id="phoneNumber"
-                                    type="text"
-                                    placeholder="Your Phone Number"
-                                    defaultValue={userData ? userData.phoneNumber : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>Email:</label>
+                                <p>{users.length > 0 ? users[num].Email : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="province">Province:</label>
-                                <input
-                                    id="province"
-                                    type="text"
-                                    placeholder="Your Province"
-                                    defaultValue={userData ? userData.province : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>Phone Number:</label>
+                                <p>{users.length > 0 ? users[num].PhoneNumber : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="city">City:</label>
-                                <input
-                                    id="city"
-                                    type="text"
-                                    placeholder="Your City"
-                                    defaultValue={userData ? userData.city : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>Address:</label>
+                                <p>{users.length > 0 ? users[num].Address : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="postalCode">Postal Code:</label>
-                                <input
-                                    id="postalCode"
-                                    type="text"
-                                    placeholder="Your Postal Code"
-                                    defaultValue={userData ? userData.postalCode : ''}
-                                    className="input-field"
-                                    readOnly
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>City:</label>
+                                <p>{users.length > 0 ? users[num].City : 'Loading...'}</p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="emailAddress">My Email Address</label>
-                                <input
-                                    id="emailAddress"
-                                    type="text"
-                                    placeholder="Your Email Address"
-                                    defaultValue={userData ? userData.email : ''}
-                                    className="input-field"
-                                />
+                                <label style={{ backgroundColor: 'lightgray' }}>Postal Code:</label>
+                                <p>{users.length > 0 ? users[num].PostalCode : 'Loading...'}</p>
                             </div>
+                            <div className="form-group">
+                                <label style={{ backgroundColor: 'lightgray' }}>Country:</label>
+                                <p>{users.length > 0 ? users[num].Country : 'Loading...'}</p>
+                            </div>
+
                         </>
                     )}
                 </div>

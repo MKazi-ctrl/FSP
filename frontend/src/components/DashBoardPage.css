@@ -76,6 +76,11 @@
     grid-column: span 2; /* Makes the last card span 3 columns */
   }
 
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .card-icon {
     height: 100px;
     width: 100px;
@@ -85,16 +90,14 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
 }
 
 .purchase-group {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
     background-color: #FF9798;
-    border: 1px solid #ddd;
     border-radius: 4px;
 }
 
@@ -131,3 +134,43 @@
     color: #ff6b6b;
     margin: 10px 0;
   }
+
+.purchase-history {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.purchase-history-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.purchase-history-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.purchase-history-group {
+    background-color: #f0f4ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    width: 100%;
+}
+
+.purchase-history-item {
+    color: #ff6b6b;
+}
